@@ -1,0 +1,127 @@
+# BEGIN LSCACHE
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteRule litespeed/debug/.*\.log$ - [F,L]
+RewriteRule \.litespeed_conf\.dat - [F,L]
+</IfModule>
+<IfModule LiteSpeed>
+CacheLookup on
+RewriteRule .* - [E=Cache-Control:no-autoflush]
+
+### marker ASYNC start ###
+RewriteCond %{REQUEST_URI} /wp-admin/admin-ajax\.php
+RewriteCond %{QUERY_STRING} action=async_litespeed
+RewriteRule .* - [E=noabort:1]
+### marker ASYNC end ###
+
+### marker DROPQS start ###
+CacheKeyModify -qs:fbclid
+CacheKeyModify -qs:gclid
+CacheKeyModify -qs:utm*
+CacheKeyModify -qs:_ga
+### marker DROPQS end ###
+
+</IfModule>
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+# END LSCACHE
+# BEGIN NON_LSCACHE
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+# END NON_LSCACHE
+########################################
+# ============ SECURITY ===============
+########################################
+
+<Files ".htaccess">
+    Order allow,deny
+    Deny from all
+</Files>
+
+
+########################################
+# ============ SECURITY ===============
+########################################
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "DENY"
+    Header always set Content-Security-Policy "frame-ancestors 'none';"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set X-Robots-Tag "noindex, nofollow"
+</IfModule>
+
+########################################
+# ===== REFERRER WASH FOR firstlp =====
+########################################
+<Files "firstlp.html">
+    Header set Referrer-Policy "no-referrer"
+</Files>
+
+# غسل الريفرر أول زيارة
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+RewriteCond %{QUERY_STRING} !(^|&)ok=1(&|$) [NC]
+RewriteCond %{REQUEST_URI} ^/(firstlp\.html|index\.html)$ [NC]
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?ahmedsherif\.top [NC]
+RewriteRule ^ %{REQUEST_URI}?ok=1 [R=302,L]
+</IfModule>
+
+########################################
+# === middle.html ONLY direct access ===
+########################################
+<Files "middle.html">
+    RewriteEngine On
+    RewriteCond %{HTTP_REFERER} !^$
+    RewriteRule ^middle\.html$ /firstlp.html [R=302,L]
+</Files>
+
+########################################
+# === PROTECT /go LINKS (STRONG) =======
+########################################
+RewriteEngine On
+
+# منع الدخول بدون referrer
+RewriteCond %{REQUEST_URI} ^/go[0-9]+/?$ [NC]
+RewriteCond %{HTTP_REFERER} ^$
+RewriteRule ^ - [F]
+
+# منع الدخول من أي referrer خارجي
+RewriteCond %{REQUEST_URI} ^/go[0-9]+/?$ [NC]
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?ahmedsherif\.top [NC]
+RewriteRule ^ - [F]
+
+# ===== BEGIN AMAZON REDIRECTS (PLUGIN CONTROLS THIS) =====
+RewriteRule ^go1/?$ https://www.amazon.com/dp/B0CKTM52YC?tag=sherif20-20&th=1 [R=302,L]
+RewriteRule ^go2/?$ https://www.amazon.com/dp/B0GD956T7X?tag=sherif20-20&th=1 [R=302,L]
+RewriteRule ^go3/?$ https://www.amazon.com/dp/B0F3P5NF56?tag=sherif20-20&th=1 [R=302,L]
+RewriteRule ^go4/?$ https://www.amazon.com/dp/B09R6FNNS1?tag=sherif20-20 [R=302,L]
+RewriteRule ^go5/?$ https://www.amazon.com/dp/B0DL7595LF?tag=sherif20-20 [R=302,L]
+RewriteRule ^go6/?$ https://www.amazon.com/dp/B0F2GL3S19?tag=sherif20-20 [R=302,L]
+RewriteRule ^go7/?$ https://www.amazon.com/dp/B0947BJ67M?tag=sherif20-20 [R=302,L]
+RewriteRule ^go8/?$ https://www.amazon.com/dp/B09R6FNNS1?tag=sherif20-20 [R=302,L]
+RewriteRule ^go9/?$ https://www.amazon.com/dp/B0F854GHFB?tag=sherif20-20 [R=302,L]
+RewriteRule ^go10/?$ https://www.amazon.com/dp/B0GQ3L22SP?tag=sherif20-20&th=1 [R=302,L]
+# ===== END AMAZON REDIRECTS =====
+
+
+
+
+
+
+
+########################################
+# ========== WORDPRESS ================
+########################################
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+Options -Indexes
+</IfModule>
+# END WordPress

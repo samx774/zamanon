@@ -1,7 +1,7 @@
 import { getPage } from "@/lib/pages";
 
 export const metadata = {
-  title: "Affiliate Disclosure - DealTop",
+  title: "Affiliate Disclosure - Zamanon",
 };
 
 export default function AffiliateDisclosurePage() {

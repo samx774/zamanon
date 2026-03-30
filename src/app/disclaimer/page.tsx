@@ -1,7 +1,7 @@
 import { getPage } from "@/lib/pages";
 
 export const metadata = {
-  title: "Disclaimer - DealTop",
+  title: "Disclaimer - Zamanon",
 };
 
 export default function DisclaimerPage() {

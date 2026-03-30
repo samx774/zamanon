@@ -10,12 +10,12 @@ export default function Home() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+      <section className="bg-gradient-to-r from-teal-600 to-teal-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <h1 className="text-4xl md:text-5xl font-bold">
             Find the Best Tech Deals
           </h1>
-          <p className="mt-4 text-lg text-blue-100 max-w-2xl">
+          <p className="mt-4 text-lg text-teal-100 max-w-2xl">
             Curated selection of laptops, desktops, monitors, and accessories at
             the best prices on Amazon.
           </p>
@@ -95,7 +95,7 @@ export default function Home() {
               <Link
                 key={cat.slug}
                 href={`/category/${cat.slug}`}
-                className="border border-[var(--border)] rounded-lg p-6 bg-white dark:bg-[#141414] hover:shadow-md transition-shadow text-center"
+                className="border border-[var(--border)] rounded-lg p-6 bg-[var(--card)] hover:shadow-md transition-shadow text-center"
               >
                 <h3 className="text-lg font-semibold capitalize">{cat.name}</h3>
                 <p className="text-sm text-[var(--muted)] mt-1">

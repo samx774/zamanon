@@ -18,7 +18,7 @@ export async function generateMetadata({
   const product = getProductBySlug(slug);
   if (!product) return { title: "Product Not Found" };
   return {
-    title: `${product.title} - DealTop`,
+    title: `${product.title} - Zamanon`,
     description: product.excerpt,
     openGraph: {
       title: product.title,
@@ -82,7 +82,7 @@ export default async function ProductPage({
 
             {/* Details */}
             <div>
-              <span className="inline-block text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 capitalize mb-3">
+              <span className="inline-block text-xs px-2 py-1 rounded-full bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200 capitalize mb-3">
                 {product.category}
               </span>
               <h1 className="text-2xl font-bold leading-tight">
@@ -98,7 +98,7 @@ export default async function ProductPage({
                   href={product.amazon_link}
                   target="_blank"
                   rel="noopener noreferrer nofollow"
-                  className="block w-full text-center bg-[#f59e0b] hover:bg-[#d97706] text-white font-semibold py-3 px-6 rounded-lg transition-colors text-lg"
+                  className="block w-full text-center bg-[var(--accent)] hover:bg-[var(--accent-dark)] text-white font-semibold py-3 px-6 rounded-lg transition-colors text-lg"
                 >
                   Check Price on Amazon
                 </a>

@@ -2,7 +2,7 @@ import ProductCard from "@/components/ProductCard";
 import { searchProducts, getAllProducts } from "@/lib/products";
 
 export const metadata = {
-  title: "Search - DealTop",
+  title: "Search - Zamanon",
   description: "Search for tech products and deals.",
 };
 

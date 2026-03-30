@@ -4,7 +4,7 @@ import type { Product } from "@/lib/products";
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
-    <div className="group border border-[var(--border)] rounded-lg overflow-hidden bg-white dark:bg-[#141414] hover:shadow-lg transition-shadow">
+    <div className="group border border-[var(--border)] rounded-lg overflow-hidden bg-[var(--card)] hover:shadow-lg transition-shadow">
       <Link href={`/product/${product.slug}`}>
         <div className="relative aspect-square bg-white flex items-center justify-center overflow-hidden">
           {product.image ? (
@@ -31,7 +31,7 @@ export default function ProductCard({ product }: { product: Product }) {
         </Link>
 
         <div className="mt-2 flex items-center gap-2">
-          <span className="inline-block text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 capitalize">
+          <span className="inline-block text-xs px-2 py-1 rounded-full bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200 capitalize">
             {product.category}
           </span>
         </div>
@@ -40,7 +40,7 @@ export default function ProductCard({ product }: { product: Product }) {
           href={product.amazon_link}
           target="_blank"
           rel="noopener noreferrer nofollow"
-          className="mt-3 block w-full text-center bg-[#f59e0b] hover:bg-[#d97706] text-white text-sm font-medium py-2 px-4 rounded transition-colors"
+          className="mt-3 block w-full text-center bg-[var(--accent)] hover:bg-[var(--accent-dark)] text-white text-sm font-medium py-2 px-4 rounded transition-colors"
         >
           View on Amazon
         </a>

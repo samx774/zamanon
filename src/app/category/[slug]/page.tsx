@@ -22,7 +22,7 @@ export async function generateMetadata({
 }) {
   const { slug: category } = await params;
   return {
-    title: `${category.charAt(0).toUpperCase() + category.slice(1)} - DealTop`,
+    title: `${category.charAt(0).toUpperCase() + category.slice(1)} - Zamanon`,
     description: `Browse the best ${category} deals on Amazon. Curated selection at the best prices.`,
   };
 }

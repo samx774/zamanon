@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /e/amazon_project/dealzeby/node_modules/next/dist -type f -name *middleware*)",
+      "Bash(find /e/amazon_project/dealzeby/node_modules/next/dist/docs -type f -name *route*)",
+      "Bash(find /e/amazon_project/dealzeby -maxdepth 2 -name proxy.* -o -name middleware.*)",
+      "Bash(npx next:*)",
+      "Bash(grep -E \"\\\\.\\(ts|js|json\\)$\")"
+    ]
+  }
+}

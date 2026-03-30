@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <h3 className="text-lg font-bold text-[var(--primary)]">
-              DealTop
+              Zamanon
             </h3>
             <p className="mt-2 text-sm text-[var(--muted)]">
               Curated deals on the latest tech products. We help you find the
@@ -106,7 +106,7 @@ export default function Footer() {
 
         <div className="mt-8 pt-8 border-t border-[var(--border)] text-center">
           <p className="text-sm text-[var(--muted)]">
-            &copy; {new Date().getFullYear()} DealTop. All rights reserved.
+            &copy; {new Date().getFullYear()} Zamanon. All rights reserved.
           </p>
           <p className="text-xs text-[var(--muted)] mt-1">
             As an Amazon Associate, we earn from qualifying purchases.

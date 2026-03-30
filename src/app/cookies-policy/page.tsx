@@ -1,7 +1,7 @@
 import { getPage } from "@/lib/pages";
 
 export const metadata = {
-  title: "Cookies Policy - DealTop",
+  title: "Cookies Policy - Zamanon",
 };
 
 export default function CookiesPolicyPage() {

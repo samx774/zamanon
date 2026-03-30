@@ -13,22 +13,22 @@ const geistSans = Geist({
 export const metadata: Metadata = {
   metadataBase: new URL("https://the-paramedics.org"),
   title: {
-    default: "DealTop - Latest Products & Best Deals",
-    template: "%s | DealTop",
+    default: "Zamanon - Latest Products & Best Deals",
+    template: "%s | Zamanon",
   },
   description:
     "Find the best deals on laptops, desktops, monitors, and tech accessories. Curated Amazon product recommendations.",
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "DealTop",
-    title: "DealTop - Latest Products & Best Deals",
+    siteName: "Zamanon",
+    title: "Zamanon - Latest Products & Best Deals",
     description:
       "Find the best deals on laptops, desktops, monitors, and tech accessories.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "DealTop - Latest Products & Best Deals",
+    title: "Zamanon - Latest Products & Best Deals",
     description:
       "Find the best deals on laptops, desktops, monitors, and tech accessories.",
   },

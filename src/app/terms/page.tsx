@@ -1,7 +1,7 @@
 import { getPage } from "@/lib/pages";
 
 export const metadata = {
-  title: "Terms and Conditions - DealTop",
+  title: "Terms and Conditions - Zamanon",
 };
 
 export default function TermsPage() {

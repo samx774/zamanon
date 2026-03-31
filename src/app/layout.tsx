@@ -11,7 +11,7 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://the-paramedics.org"),
+  metadataBase: new URL("https://zamanon.vercel.app"),
   title: {
     default: "Zamanon - Latest Products & Best Deals",
     template: "%s | Zamanon",

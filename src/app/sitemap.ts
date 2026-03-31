@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllProducts, getCategories } from "@/lib/products";
 
-const BASE_URL = "https://the-paramedics.org";
+const BASE_URL = "https://zamanon.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const products = getAllProducts();

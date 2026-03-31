@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/go/"],
     },
-    sitemap: "https://the-paramedics.org/sitemap.xml",
+    sitemap: "https://zamanon.vercel.app/sitemap.xml",
   };
 }

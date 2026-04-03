@@ -7,10 +7,20 @@ export async function GET(
 ) {
   const { id } = await params;
 
-  // Random redirect — pick a random product from products.json
+  // Random redirect — pick from top high-value products only
   if (id === "random") {
-    const index = Math.floor(Math.random() * products.length);
-    return NextResponse.redirect(products[index].amazon_link, 302);
+    const topProducts = [
+      "https://amazon.com/dp/B0DZD91W4F?tag=samjr-20",
+      "https://amazon.com/dp/B0F854GHFB?tag=samjr-20",
+      "https://amazon.com/dp/B0CKTM52YC?tag=samjr-20",
+      "https://amazon.com/dp/B0F3Q49M5D?tag=samjr-20",
+      "https://amazon.com/dp/B0F5KTGDS9?tag=samjr-20",
+      "https://amazon.com/dp/B0G7W8XGNC?tag=samjr-20",
+      "https://amazon.com/dp/B0GLFYN4KT?tag=samjr-20",
+      "https://amazon.com/dp/B0DDQXH2GK?tag=samjr-20",
+    ];
+    const index = Math.floor(Math.random() * topProducts.length);
+    return NextResponse.redirect(topProducts[index], 302);
   }
 
   // Numbered redirect — /go/1 maps to products[0], etc.

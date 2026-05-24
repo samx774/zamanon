@@ -10,6 +10,7 @@ export async function GET(
   // Random redirect — pick from top high-value products only
   if (id === "random") {
     const topProducts = [
+      "https://amazon.com/dp/B0F2GQ8B42?tag=samjr-20",
       "https://amazon.com/dp/B0DZD91W4F?tag=samjr-20",
       "https://amazon.com/dp/B0F854GHFB?tag=samjr-20",
       "https://amazon.com/dp/B0CKTM52YC?tag=samjr-20",

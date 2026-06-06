@@ -11,7 +11,6 @@ export async function GET(
   if (id === "random") {
     const topProducts = [
       "https://amazon.com/dp/B0F2GQ8B42?tag=samjr-20",
-      "https://amazon.com/dp/B0DZD91W4F?tag=samjr-20",
       "https://amazon.com/dp/B0F854GHFB?tag=samjr-20",
       "https://amazon.com/dp/B0CKTM52YC?tag=samjr-20",
       "https://amazon.com/dp/B0F3Q49M5D?tag=samjr-20",
@@ -19,6 +18,8 @@ export async function GET(
       "https://amazon.com/dp/B0G7W8XGNC?tag=samjr-20",
       "https://amazon.com/dp/B0GLFYN4KT?tag=samjr-20",
       "https://amazon.com/dp/B0DDQXH2GK?tag=samjr-20",
+      "https://amazon.com/dp/B0GR1JTFP8?tag=samjr-20",
+      "https://amazon.com/dp/B0GR14G9PM?tag=samjr-20",
     ];
     const index = Math.floor(Math.random() * topProducts.length);
     return NextResponse.redirect(topProducts[index], 302);

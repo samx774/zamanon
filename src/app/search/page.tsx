@@ -4,6 +4,9 @@ import { searchProducts, getAllProducts } from "@/lib/products";
 export const metadata = {
   title: "Search - Zamanon",
   description: "Search for tech products and deals.",
+  // Search-result pages are thin/duplicative — keep them out of the index
+  // but let crawlers follow through to the real product pages.
+  robots: { index: false, follow: true },
 };
 
 export default async function SearchPage({
@@ -17,7 +20,7 @@ export default async function SearchPage({
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-2xl font-bold mb-2">Search Results</h1>
+      <h1 className="font-display text-2xl md:text-3xl font-bold mb-2">Search Results</h1>
       {query && (
         <p className="text-[var(--muted)] mb-6">
           {results.length} results for &quot;{query}&quot;

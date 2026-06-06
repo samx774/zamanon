@@ -7,6 +7,8 @@ import {
 } from "@/lib/products";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import JsonLd from "@/components/JsonLd";
+import { SITE_URL } from "@/lib/site";
 
 const PRODUCTS_PER_PAGE = 24;
 
@@ -24,6 +26,7 @@ export async function generateMetadata({
   return {
     title: `${category.charAt(0).toUpperCase() + category.slice(1)} - Zamanon`,
     description: `Browse the best ${category} deals on Amazon. Curated selection at the best prices.`,
+    alternates: { canonical: `/category/${category}` },
   };
 }
 
@@ -55,6 +58,40 @@ export default async function CategoryPage({
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <JsonLd
+        data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: `${SITE_URL}/`,
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: category,
+                item: `${SITE_URL}/category/${category}`,
+              },
+            ],
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: `${category} products`,
+            numberOfItems: allProducts.length,
+            itemListElement: products.map((p, i) => ({
+              "@type": "ListItem",
+              position: start + i + 1,
+              url: `${SITE_URL}/product/${p.slug}`,
+              name: p.title,
+            })),
+          },
+        ]}
+      />
       <div className="flex items-center gap-2 text-sm text-[var(--muted)] mb-6">
         <Link href="/" className="hover:text-[var(--foreground)]">
           Home
@@ -89,7 +126,7 @@ export default async function CategoryPage({
         {/* Products Grid */}
         <div className="flex-1">
           <div className="flex items-center justify-between mb-6">
-            <h1 className="text-2xl font-bold capitalize">{category}</h1>
+            <h1 className="font-display text-2xl md:text-3xl font-bold capitalize">{category}</h1>
             <span className="text-sm text-[var(--muted)]">
               {allProducts.length} products
             </span>

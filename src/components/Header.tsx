@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -27,21 +28,30 @@ export default function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-[var(--background)] border-b border-[var(--border)]">
+    <header className="sticky top-0 z-50 bg-[var(--background)]/85 backdrop-blur-md border-b border-[var(--border)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 gap-4">
-          <Link href="/" className="flex items-center gap-2 shrink-0">
-            <span className="text-2xl font-bold text-[var(--primary)]">
-              Zamanon
-            </span>
+        <div className="flex items-center justify-between h-20 gap-4">
+          <Link
+            href="/"
+            className="flex items-center shrink-0 transition-opacity hover:opacity-70"
+            aria-label="Zamanon — home"
+          >
+            <Image
+              src="/logo.png"
+              alt="Zamanon"
+              width={1417}
+              height={501}
+              priority
+              className="h-9 w-auto md:h-10"
+            />
           </Link>
 
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-8">
             {categories.map((cat) => (
               <Link
                 key={cat.name}
                 href={cat.href}
-                className="text-sm font-medium text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+                className="text-[0.8125rem] font-medium uppercase tracking-[0.12em] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
               >
                 {cat.name}
               </Link>
@@ -55,11 +65,11 @@ export default function Header() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search products..."
-                className="w-48 lg:w-64 px-3 py-1.5 text-sm border border-[var(--border)] rounded-lg bg-[var(--card)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent"
+                className="w-48 lg:w-60 pl-3 pr-9 py-2 text-sm border border-[var(--border)] rounded-full bg-[var(--card)] focus:outline-none focus:border-[var(--foreground)] focus:bg-[var(--background)] transition-colors"
               />
               <button
                 type="submit"
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-[var(--muted)]"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
                 aria-label="Search"
               >
                 <svg
@@ -79,14 +89,14 @@ export default function Header() {
             </form>
             <Link
               href="/about"
-              className="text-sm text-[var(--muted)] hover:text-[var(--foreground)]"
+              className="text-[0.8125rem] font-medium uppercase tracking-[0.12em] text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
             >
               About
             </Link>
           </div>
 
           <button
-            className="md:hidden p-2"
+            className="md:hidden p-2 -mr-2"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
@@ -116,34 +126,27 @@ export default function Header() {
         </div>
 
         {menuOpen && (
-          <nav className="md:hidden pb-4 border-t border-[var(--border)] pt-4">
-            <form onSubmit={handleSearch} className="mb-4">
+          <nav className="md:hidden pb-5 border-t border-[var(--border)] pt-5">
+            <form onSubmit={handleSearch} className="mb-5">
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search products..."
-                className="w-full px-3 py-2 text-sm border border-[var(--border)] rounded-lg bg-[var(--card)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                className="w-full px-4 py-2.5 text-sm border border-[var(--border)] rounded-full bg-[var(--card)] focus:outline-none focus:border-[var(--foreground)] focus:bg-[var(--background)] transition-colors"
               />
             </form>
-            <div className="flex flex-col gap-3">
-              {categories.map((cat) => (
+            <div className="flex flex-col">
+              {[...categories, { name: "About", href: "/about" }].map((cat) => (
                 <Link
                   key={cat.name}
                   href={cat.href}
-                  className="text-sm font-medium text-[var(--muted)] hover:text-[var(--foreground)]"
+                  className="py-3 text-sm font-medium uppercase tracking-[0.12em] text-[var(--muted)] hover:text-[var(--foreground)] border-b border-[var(--border)] last:border-0 transition-colors"
                   onClick={() => setMenuOpen(false)}
                 >
                   {cat.name}
                 </Link>
               ))}
-              <Link
-                href="/about"
-                className="text-sm text-[var(--muted)] hover:text-[var(--foreground)]"
-                onClick={() => setMenuOpen(false)}
-              >
-                About
-              </Link>
             </div>
           </nav>
         )}

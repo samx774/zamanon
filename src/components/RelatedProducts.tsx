@@ -19,7 +19,7 @@ export default function RelatedProducts({
 
   return (
     <section className="mt-12 border-t border-[var(--border)] pt-8">
-      <h2 className="text-xl font-bold mb-6">Related Products</h2>
+      <h2 className="font-display text-xl font-bold mb-6">Related Products</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         {related.map((product) => (
           <ProductCard key={product.slug} product={product} />

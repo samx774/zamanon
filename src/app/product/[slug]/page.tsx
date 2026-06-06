@@ -4,6 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Sidebar from "@/components/Sidebar";
 import RelatedProducts from "@/components/RelatedProducts";
+import JsonLd from "@/components/JsonLd";
+import { SITE_URL, SITE_NAME } from "@/lib/site";
 
 export function generateStaticParams() {
   return getAllProducts().map((p) => ({ slug: p.slug }));
@@ -20,7 +22,17 @@ export async function generateMetadata({
   return {
     title: `${product.title} - Zamanon`,
     description: product.excerpt,
+    keywords: [product.category, "amazon deal", "best price", SITE_NAME],
+    alternates: { canonical: `/product/${product.slug}` },
     openGraph: {
+      type: "website",
+      title: product.title,
+      description: product.excerpt,
+      url: `${SITE_URL}/product/${product.slug}`,
+      images: product.image ? [product.image] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
       title: product.title,
       description: product.excerpt,
       images: product.image ? [product.image] : [],
@@ -42,6 +54,43 @@ export default async function ProductPage({
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <JsonLd
+        data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: product.title,
+            description: product.excerpt || product.description,
+            category: product.category,
+            sku: product.slug,
+            url: `${SITE_URL}/product/${product.slug}`,
+            ...(product.image ? { image: [product.image] } : {}),
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: `${SITE_URL}/`,
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: product.category,
+                item: `${SITE_URL}/category/${product.category}`,
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: product.title,
+              },
+            ],
+          },
+        ]}
+      />
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 text-sm text-[var(--muted)] mb-6">
         <Link href="/" className="hover:text-[var(--foreground)]">
@@ -82,10 +131,10 @@ export default async function ProductPage({
 
             {/* Details */}
             <div>
-              <span className="inline-block text-xs px-2 py-1 rounded-full bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200 capitalize mb-3">
+              <span className="eyebrow text-[var(--muted)] capitalize">
                 {product.category}
               </span>
-              <h1 className="text-2xl font-bold leading-tight">
+              <h1 className="font-display mt-3 text-2xl md:text-3xl font-bold leading-tight">
                 {product.title}
               </h1>
 
@@ -93,14 +142,17 @@ export default async function ProductPage({
                 {product.excerpt}
               </p>
 
-              <div className="mt-6 space-y-3">
+              <div className="mt-7 space-y-3">
                 <a
                   href={product.amazon_link}
                   target="_blank"
                   rel="noopener noreferrer nofollow"
-                  className="block w-full text-center bg-[var(--accent)] hover:bg-[var(--accent-dark)] text-white font-semibold py-3 px-6 rounded-lg transition-colors text-lg"
+                  className="flex items-center justify-center gap-2 w-full text-center bg-[var(--foreground)] hover:bg-[var(--muted)] text-[var(--background)] font-medium uppercase tracking-[0.1em] text-sm py-4 px-6 transition-colors"
                 >
                   Check Price on Amazon
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H8m9 0v9" />
+                  </svg>
                 </a>
                 <p className="text-xs text-[var(--muted)] text-center">
                   As an Amazon Associate, we earn from qualifying purchases.
@@ -109,7 +161,7 @@ export default async function ProductPage({
 
               {product.description && (
                 <div className="mt-8">
-                  <h2 className="text-lg font-semibold mb-3">Description</h2>
+                  <h2 className="font-display text-lg font-semibold mb-3">Description</h2>
                   <div className="text-sm text-[var(--muted)] leading-relaxed whitespace-pre-line">
                     {product.description}
                   </div>

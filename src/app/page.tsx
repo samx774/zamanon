@@ -1,82 +1,63 @@
 import ProductCard from "@/components/ProductCard";
+import Hero from "@/components/Hero";
 import { getAllProducts, getCategories } from "@/lib/products";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   const products = getAllProducts();
   const categories = getCategories();
   const featured = products.slice(0, 12);
+  const heroProducts = products.slice(0, 3);
 
   return (
     <div>
-      {/* Hero */}
-      <section className="bg-gradient-to-r from-teal-600 to-teal-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-          <h1 className="text-4xl md:text-5xl font-bold">
-            Find the Best Tech Deals
-          </h1>
-          <p className="mt-4 text-lg text-teal-100 max-w-2xl">
-            Curated selection of laptops, desktops, monitors, and accessories at
-            the best prices on Amazon.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            {categories.map((cat) => (
-              <Link
-                key={cat.slug}
-                href={`/category/${cat.slug}`}
-                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur px-4 py-2 rounded-full text-sm font-medium transition-colors"
-              >
-                <span className="capitalize">{cat.name}</span>
-                <span className="bg-white/20 px-2 py-0.5 rounded-full text-xs">
-                  {cat.count}
-                </span>
-              </Link>
+      {/* Hero — brand statement first, products in a supporting strip */}
+      <Hero products={heroProducts} />
+
+      {/* Stats */}
+      <section className="bg-[var(--foreground)] text-[var(--background)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
+            {[
+              { value: `${products.length}+`, label: "Products" },
+              { value: categories.length, label: "Categories" },
+              { value: "Daily", label: "Updated" },
+              { value: "Amazon", label: "Verified Deals" },
+            ].map((stat) => (
+              <div key={stat.label} className="px-4 py-8 text-center">
+                <div className="font-display text-2xl md:text-3xl font-bold">
+                  {stat.value}
+                </div>
+                <div className="eyebrow mt-2 text-white/50">{stat.label}</div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="border-b border-[var(--border)]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            <div>
-              <div className="text-2xl font-bold text-[var(--primary)]">
-                {products.length}+
-              </div>
-              <div className="text-sm text-[var(--muted)]">Products</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-[var(--primary)]">
-                {categories.length}
-              </div>
-              <div className="text-sm text-[var(--muted)]">Categories</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-[var(--primary)]">
-                Daily
-              </div>
-              <div className="text-sm text-[var(--muted)]">Updated</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-[var(--primary)]">
-                Amazon
-              </div>
-              <div className="text-sm text-[var(--muted)]">Verified Deals</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Featured Products */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl font-bold">Latest Products</h2>
+      <section
+        id="products"
+        className="scroll-mt-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20"
+      >
+        <div className="flex items-end justify-between mb-10">
+          <div>
+            <p className="eyebrow text-[var(--muted)]">The Latest</p>
+            <h2 className="font-display mt-3 text-3xl md:text-4xl font-bold">
+              New Arrivals
+            </h2>
+          </div>
           <Link
             href="/category/laptops"
-            className="text-sm text-[var(--primary)] hover:underline"
+            className="hidden sm:inline-flex items-center gap-2 text-[0.8125rem] font-medium uppercase tracking-[0.12em] hover:text-[var(--muted)] transition-colors"
           >
-            View all &rarr;
+            View all
+            <span aria-hidden="true">&rarr;</span>
           </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -86,21 +67,34 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Categories Grid */}
-      <section className="bg-[var(--card)] py-12">
+      {/* Categories */}
+      <section className="border-t border-[var(--border)] bg-[var(--card)] py-16 md:py-20 grid-texture">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold mb-8">Browse by Category</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-            {categories.map((cat) => (
+          <div className="mb-10">
+            <p className="eyebrow text-[var(--muted)]">Explore</p>
+            <h2 className="font-display mt-3 text-3xl md:text-4xl font-bold">
+              Browse by Category
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-px bg-[var(--border)] border border-[var(--border)]">
+            {categories.map((cat, i) => (
               <Link
                 key={cat.slug}
                 href={`/category/${cat.slug}`}
-                className="border border-[var(--border)] rounded-lg p-6 bg-[var(--card)] hover:shadow-md transition-shadow text-center"
+                className="group relative bg-[var(--background)] p-8 transition-colors hover:bg-[var(--foreground)]"
               >
-                <h3 className="text-lg font-semibold capitalize">{cat.name}</h3>
-                <p className="text-sm text-[var(--muted)] mt-1">
+                <span className="eyebrow text-[var(--muted)] group-hover:text-white/50 transition-colors">
+                  0{i + 1}
+                </span>
+                <h3 className="font-display mt-6 text-xl font-semibold capitalize group-hover:text-[var(--background)] transition-colors">
+                  {cat.name}
+                </h3>
+                <p className="mt-1 text-sm text-[var(--muted)] group-hover:text-white/60 transition-colors">
                   {cat.count} products
                 </p>
+                <span className="absolute right-7 top-8 text-[var(--muted)] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-[var(--background)] transition-all duration-300" aria-hidden="true">
+                  &rarr;
+                </span>
               </Link>
             ))}
           </div>

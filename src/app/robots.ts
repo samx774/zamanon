@@ -1,12 +1,15 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/go/"],
+      // Redirect/funnel routes carry no indexable content
+      disallow: ["/go/", "/lp/"],
     },
-    sitemap: "https://zamanon.vercel.app/sitemap.xml",
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
   };
 }

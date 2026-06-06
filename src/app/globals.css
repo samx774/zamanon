@@ -1,41 +1,102 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* Dark mode is opt-in via a `.dark` class only — never via OS preference.
+   This keeps the brand strictly black-on-white everywhere. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-  --primary: #0d9488;
-  --primary-dark: #0f766e;
-  --accent: #f43f5e;
-  --accent-dark: #e11d48;
-  --muted: #6b7280;
-  --border: #e2e8f0;
-  --card: #f8fafc;
+  --foreground: #0a0a0a;
+  --primary: #0a0a0a;
+  --primary-dark: #000000;
+  --accent: #0a0a0a;
+  --accent-dark: #000000;
+  --muted: #737373;
+  --border: #e7e7e7;
+  --card: #fafafa;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-sora);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0b0f0f;
-    --foreground: #e8eded;
-    --primary: #2dd4bf;
-    --primary-dark: #14b8a6;
-    --accent: #fb7185;
-    --accent-dark: #f43f5e;
-    --border: #1e2a2a;
-    --card: #111919;
-    --muted: #94a3b8;
-  }
+* {
+  border-color: var(--border);
+}
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+/* Display font — used for headings and brand-level type */
+.font-display {
+  font-family: var(--font-sora), var(--font-geist-sans), sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Tracked-out micro-label, echoing the "TECH" wordmark in the logo */
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+
+/* Subtle hairline grid texture for atmospheric sections */
+.grid-texture {
+  background-image:
+    linear-gradient(to right, rgba(10, 10, 10, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10, 10, 10, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Thin custom scrollbar to match the minimal aesthetic */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border: 3px solid var(--background);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }

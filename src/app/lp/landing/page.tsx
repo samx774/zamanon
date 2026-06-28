@@ -9,9 +9,7 @@ export default function LandingPage() {
 
   return (
     <html>
-      <head>
-        <meta name="referrer" content="strict-origin" />
-      </head>
+      <head />
       <body>
         <p style={{ color: "#999", textAlign: "center", marginTop: "40vh" }}>
           Redirecting...

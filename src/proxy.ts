@@ -46,27 +46,6 @@ export function proxy(request: NextRequest) {
     }
   }
 
-  // ── Referrer washing for /lp/first ──
-  // External referrer without ?ok=1 → self-redirect to strip the referrer
-  if (pathname === "/lp/first") {
-    if (referer && !internal) {
-      const ok = searchParams.get("ok");
-      if (ok !== "1") {
-        const url = request.nextUrl.clone();
-        url.searchParams.set("ok", "1");
-        return NextResponse.redirect(url, 302);
-      }
-    }
-  }
-
-  // ── middle page: only empty referrer allowed ──
-  // htaccess: if referrer is NOT empty → redirect to /lp/first
-  if (pathname === "/lp/middle") {
-    if (referer) {
-      return NextResponse.redirect(new URL("/lp/first", request.url), 302);
-    }
-  }
-
   // ── Security headers on all responses ──
   const response = NextResponse.next();
 
@@ -82,13 +61,6 @@ export function proxy(request: NextRequest) {
   // noindex/nofollow for funnel & redirect routes
   if (pathname.startsWith("/lp/") || pathname.startsWith("/go/")) {
     response.headers.set("X-Robots-Tag", "noindex, nofollow");
-  }
-
-  // Referrer-Policy: no-referrer for LP pages (referrer wash)
-  if (pathname.startsWith("/lp/")) {
-    response.headers.set("Referrer-Policy", "strict-origin");
-  } else {
-    response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   }
 
   return response;

@@ -5,7 +5,6 @@ export async function GET() {
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="referrer" content="strict-origin">
 </head>
 <body>
 <script>window.location.replace("/go/random")</script>

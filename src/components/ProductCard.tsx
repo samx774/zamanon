@@ -36,7 +36,7 @@ export default function ProductCard({ product }: { product: Product }) {
         <a
           href={product.amazon_link}
           target="_blank"
-          rel="noopener noreferrer nofollow"
+          rel="noopener nofollow"
           className="mt-4 inline-flex items-center justify-center gap-2 w-full text-center bg-[var(--foreground)] text-[var(--background)] text-[0.8125rem] font-medium uppercase tracking-[0.1em] py-3 px-4 transition-colors hover:bg-[var(--muted)]"
         >
           View on Amazon

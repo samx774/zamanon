@@ -146,7 +146,7 @@ export default async function ProductPage({
                 <a
                   href={product.amazon_link}
                   target="_blank"
-                  rel="noopener noreferrer nofollow"
+                  rel="noopener nofollow"
                   className="flex items-center justify-center gap-2 w-full text-center bg-[var(--foreground)] hover:bg-[var(--muted)] text-[var(--background)] font-medium uppercase tracking-[0.1em] text-sm py-4 px-6 transition-colors"
                 >
                   Check Price on Amazon

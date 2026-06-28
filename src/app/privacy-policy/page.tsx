@@ -1,7 +1,7 @@
 import { getPage } from "@/lib/pages";
 
 export const metadata = {
-  title: "Privacy Policy - Zamanon",
+  title: "Privacy Policy - ZamTech",
 };
 
 export default function PrivacyPolicyPage() {

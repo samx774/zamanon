@@ -21,8 +21,8 @@ const sora = Sora({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Zamanon - Latest Products & Best Deals",
-    template: "%s | Zamanon",
+    default: "ZamTech - Latest Products & Best Deals",
+    template: "%s | ZamTech",
   },
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
@@ -37,13 +37,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: "Zamanon - Latest Products & Best Deals",
+    title: "ZamTech - Latest Products & Best Deals",
     description:
       "Find the best deals on laptops, desktops, monitors, and tech accessories.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zamanon - Latest Products & Best Deals",
+    title: "ZamTech - Latest Products & Best Deals",
     description:
       "Find the best deals on laptops, desktops, monitors, and tech accessories.",
   },
@@ -92,7 +92,6 @@ export default function RootLayout({
               "@type": "Organization",
               name: SITE_NAME,
               url: SITE_URL,
-              logo: `${SITE_URL}/logo.png`,
               description: SITE_DESCRIPTION,
             },
             {

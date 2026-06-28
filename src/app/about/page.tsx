@@ -1,8 +1,8 @@
 import { getPage } from "@/lib/pages";
 
 export const metadata = {
-  title: "About Us - Zamanon",
-  description: "Learn about Zamanon and our mission to find the best tech deals.",
+  title: "About Us - ZamTech",
+  description: "Learn about ZamTech and our mission to find the best tech deals.",
 };
 
 export default function AboutPage() {
@@ -19,7 +19,7 @@ export default function AboutPage() {
       ) : (
         <div className="text-[var(--muted)]">
           <p>
-            Zamanon is your go-to destination for finding the best tech deals
+            ZamTech is your go-to destination for finding the best tech deals
             online. We curate products from Amazon to help you find laptops,
             desktops, monitors, and accessories at the best prices.
           </p>

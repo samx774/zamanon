@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 const categoryLinks = [
   { name: "Laptops", href: "/category/laptops" },
@@ -22,14 +21,9 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div className="max-w-xs">
-            {/* Logo is black-on-white; invert renders it white-on-black to suit the dark footer */}
-            <Image
-              src="/logo.png"
-              alt="Zamanon"
-              width={1417}
-              height={501}
-              className="h-9 w-auto invert"
-            />
+            <span className="font-display text-2xl font-extrabold tracking-tight text-white">
+              ZamTech<span className="text-white/50">.</span>
+            </span>
             <p className="mt-5 text-sm leading-relaxed text-white/50">
               Curated deals on the latest tech products. We help you find the
               best prices on laptops, desktops, monitors, and more.
@@ -71,7 +65,7 @@ export default function Footer() {
 
         <div className="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
           <p className="text-sm text-white/50">
-            &copy; {new Date().getFullYear()} Zamanon. All rights reserved.
+            &copy; {new Date().getFullYear()} ZamTech. All rights reserved.
           </p>
           <p className="text-xs text-white/40">
             As an Amazon Associate, we earn from qualifying purchases.

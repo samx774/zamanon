@@ -20,7 +20,7 @@ export async function generateMetadata({
   const product = getProductBySlug(slug);
   if (!product) return { title: "Product Not Found" };
   return {
-    title: `${product.title} - Zamanon`,
+    title: `${product.title} - ZamTech`,
     description: product.excerpt,
     keywords: [product.category, "amazon deal", "best price", SITE_NAME],
     alternates: { canonical: `/product/${product.slug}` },

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -34,16 +33,11 @@ export default function Header() {
           <Link
             href="/"
             className="flex items-center shrink-0 transition-opacity hover:opacity-70"
-            aria-label="Zamanon — home"
+            aria-label="ZamTech — home"
           >
-            <Image
-              src="/logo.png"
-              alt="Zamanon"
-              width={1417}
-              height={501}
-              priority
-              className="h-9 w-auto md:h-10"
-            />
+            <span className="font-display text-2xl font-extrabold tracking-tight text-[var(--foreground)]">
+              ZamTech<span className="text-[var(--muted)]">.</span>
+            </span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">

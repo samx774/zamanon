@@ -2,7 +2,7 @@ import ProductCard from "@/components/ProductCard";
 import { searchProducts, getAllProducts } from "@/lib/products";
 
 export const metadata = {
-  title: "Search - Zamanon",
+  title: "Search - ZamTech",
   description: "Search for tech products and deals.",
   // Search-result pages are thin/duplicative — keep them out of the index
   // but let crawlers follow through to the real product pages.

@@ -24,7 +24,7 @@ export async function generateMetadata({
 }) {
   const { slug: category } = await params;
   return {
-    title: `${category.charAt(0).toUpperCase() + category.slice(1)} - Zamanon`,
+    title: `${category.charAt(0).toUpperCase() + category.slice(1)} - ZamTech`,
     description: `Browse the best ${category} deals on Amazon. Curated selection at the best prices.`,
     alternates: { canonical: `/category/${category}` },
   };

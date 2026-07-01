@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Sidebar from "@/components/Sidebar";
 import RelatedProducts from "@/components/RelatedProducts";
+import ProductRedirect from "@/components/ProductRedirect";
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
 
@@ -54,6 +55,7 @@ export default async function ProductPage({
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <ProductRedirect amazonLink={product.amazon_link} />
       <JsonLd
         data={[
           {
